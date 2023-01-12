@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7140328320130319125}
   - component: {fileID: 1765712954916194067}
   - component: {fileID: -2610455604746867284}
+  - component: {fileID: -8654876068752421662}
   m_Layer: 0
   m_Name: SquareCyan
   m_TagString: Untagged
@@ -99,3 +100,29 @@ MonoBehaviour:
   _tileType: 3
   _x: 0
   _y: 0
+--- !u!61 &-8654876068752421662
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534712359470870279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
