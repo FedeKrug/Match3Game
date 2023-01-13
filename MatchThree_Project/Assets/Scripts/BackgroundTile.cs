@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundTile : MonoBehaviour
 {
 	[SerializeField] private Board _boardReference;
-	[SerializeField] private TileType _tileType;
+	[SerializeField] public TileType tileType;
 	[SerializeField] public int x, y;
 	void Awake()
 	{

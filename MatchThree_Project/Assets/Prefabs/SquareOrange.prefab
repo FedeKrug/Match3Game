@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardReference: {fileID: 0}
   _tileType: 1
-  _x: 0
-  _y: 0
+  x: 0
+  y: 0
 --- !u!61 &6209688663046760090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,12 +117,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.85333335, y: 0.85333335}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.85333335, y: 0.85333335}
   m_EdgeRadius: 0
