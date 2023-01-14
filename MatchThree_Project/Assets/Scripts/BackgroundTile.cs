@@ -5,18 +5,9 @@ using UnityEngine;
 public class BackgroundTile : MonoBehaviour
 {
 	[SerializeField] private Board _boardReference;
-	[SerializeField] public TileType tileType;
+	[SerializeField] public string tileType;
 	[SerializeField] public int x, y;
-	void Awake()
-	{
-
-	}
-
-
-	void Update()
-	{
-
-	}
+	
 
 	public void Constructor(Board boardManager, int X, int Y)
 	{

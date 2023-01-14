@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardReference: {fileID: 0}
-  _tileType: 3
+  tileType: Cyan
   x: 0
   y: 0
 --- !u!61 &-8654876068752421662
