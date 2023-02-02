@@ -8,7 +8,6 @@ public class Candy : MonoBehaviour
 	private static Color _selectedColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 	private static Candy _previousSelected = null;
 
-	public GameObject candyComponent;
 	[SerializeField] private bool _isSelected;
 	
 	public int id;

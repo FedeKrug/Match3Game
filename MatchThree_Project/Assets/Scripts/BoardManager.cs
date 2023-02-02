@@ -9,7 +9,6 @@ public class BoardManager : MonoBehaviour
 	public List<GameObject> prefabs = new List<GameObject>();
 	public GameObject currentCandy;
 	[SerializeField] private int _xSize, _ySize;
-	[SerializeField] private Transform _candiesParentObject;
 
 	private GameObject[,] _candies;
 
@@ -43,6 +42,8 @@ public class BoardManager : MonoBehaviour
 		float startX = this.transform.position.x;
 		float startY = this.transform.position.y;
 
+		int idX = -1;
+
 		for (int x = 0; x < _xSize; x++)
 		{
 			for (int y = 0; y < _ySize; y++)
@@ -51,10 +52,17 @@ public class BoardManager : MonoBehaviour
 
 				newCandy.name = string.Format("Candy[{0}][{1}]", x, y);
 
-				var candyPrefab = prefabs[Random.Range(0, prefabs.Count)];
-				Instantiate(candyPrefab, newCandy.GetComponent<Candy>().candyComponent.transform.position, currentCandy.transform.rotation, newCandy.transform);
-				//newCandy.GetComponent<Candy>().candyComponent = candyPrefab;
-				//candyPrefab.SetActive(true);
+				do
+				{
+					idX = Random.Range(0, prefabs.Count);
+
+				}
+				while ((x > 0 && idX == _candies[x - 1, y].GetComponent<Candy>().id) || (y > 0 && idX == _candies[x, y - 1].GetComponent<Candy>().id)); //ejecuta la asignacion de un valor aleatorio tomando en cuenta los candy de la izquierda y abajo respectivamente
+				
+
+					var candyPrefab = prefabs[idX];
+				Instantiate(candyPrefab, newCandy.GetComponent<Candy>().transform.position, currentCandy.transform.rotation, newCandy.transform);
+				newCandy.GetComponent<Candy>().id = idX;
 
 				_candies[x, y] = newCandy;
 			}

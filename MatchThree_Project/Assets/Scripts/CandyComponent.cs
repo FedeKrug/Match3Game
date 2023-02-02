@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
 
 public class CandyComponent : MonoBehaviour
@@ -8,8 +8,14 @@ public class CandyComponent : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.V))
 		{
-			anim.SetTrigger("Explode");
-			Debug.Log("Explosion Animation activated");
+			StartCoroutine(DestroyCandies());
 		}
+	}
+	private IEnumerator DestroyCandies()
+	{
+		anim.SetTrigger("Explode");
+		Debug.Log("Explosion Animation activated");
+		yield return new WaitForSeconds(0.7f);
+		Destroy(gameObject);
 	}
 }
