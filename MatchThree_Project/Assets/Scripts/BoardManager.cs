@@ -6,10 +6,10 @@ public class BoardManager : MonoBehaviour
 {
 
 	public static BoardManager instance;
-	public List<Sprite> prefabs = new List<Sprite>();
+	public List<GameObject> prefabs = new List<GameObject>();
 	public GameObject currentCandy;
 	[SerializeField] private int _xSize, _ySize;
-
+	[SerializeField] private Transform _candiesParentObject;
 
 	private GameObject[,] _candies;
 
@@ -34,6 +34,8 @@ public class BoardManager : MonoBehaviour
 		CreateInitialBoard(offset);
 	}
 
+	
+
 	private void CreateInitialBoard(Vector2 offset)
 	{
 		_candies = new GameObject[_xSize, _ySize];
@@ -45,9 +47,15 @@ public class BoardManager : MonoBehaviour
 		{
 			for (int y = 0; y < _ySize; y++)
 			{
-				GameObject newCandy = Instantiate(currentCandy, new Vector3(startX + (offset.x * x), startY + (offset.y * y), 0), currentCandy.transform.rotation);
+				GameObject newCandy = Instantiate(currentCandy, new Vector3(startX + (offset.x * x), startY + (offset.y * y), 0), currentCandy.transform.rotation, this.transform);
 
 				newCandy.name = string.Format("Candy[{0}][{1}]", x, y);
+
+				var candyPrefab = prefabs[Random.Range(0, prefabs.Count)];
+				Instantiate(candyPrefab, newCandy.GetComponent<Candy>().candyComponent.transform.position, currentCandy.transform.rotation, newCandy.transform);
+				//newCandy.GetComponent<Candy>().candyComponent = candyPrefab;
+				//candyPrefab.SetActive(true);
+
 				_candies[x, y] = newCandy;
 			}
 		}

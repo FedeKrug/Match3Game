@@ -8,11 +8,12 @@ public class Candy : MonoBehaviour
 	private static Color _selectedColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 	private static Candy _previousSelected = null;
 
-	[SerializeField] private SpriteRenderer _spriteR;
+	public GameObject candyComponent;
 	[SerializeField] private bool _isSelected;
-
+	
 	public int id;
 
+	
 
 	private Vector2[] _adjacentDirections = new Vector2[] //cuatro direcciones
 	{
@@ -28,9 +29,6 @@ public class Candy : MonoBehaviour
 
 	}
 
+	
 
-	void Update()
-	{
-
-	}
 }
