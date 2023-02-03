@@ -8,7 +8,7 @@ public class Candy : MonoBehaviour
 	private static Color _selectedColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 	private static Candy _previousSelected = null;
 
-	[SerializeField] private bool _isSelected;
+	public bool isSelected;
 	
 	public int id;
 
@@ -22,12 +22,39 @@ public class Candy : MonoBehaviour
 		Vector2.right
 	};
 
-
-	void Awake()
+	private void SelectCandy()
 	{
-
+		isSelected = true;
+		_previousSelected = gameObject.GetComponent<Candy>();
+	}
+	private void DeselectCandy()
+	{
+		isSelected = false;
+		_previousSelected = null; 
+	}
+	private void OnMouseDown()
+	{
+		if (this.GetComponentInChildren<CandyComponent>() == null || BoardManager.instance.isShifting)
+		{
+			return;
+		}
+		if (isSelected)
+		{
+			DeselectCandy();
+		}
+		else
+		{
+			if (_previousSelected == null)
+			{
+				SelectCandy();
+			}
+			else
+			{
+				_previousSelected.DeselectCandy();
+				//SelectCandy();
+			}
+		}
 	}
 
-	
 
 }

@@ -116,3 +116,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3428930705885288607}
+  _candyRef: {fileID: 3483953580642345560, guid: 17b0d8960f91cda48bfb81ad48c222c3, type: 3}

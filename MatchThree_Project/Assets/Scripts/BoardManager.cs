@@ -13,7 +13,7 @@ public class BoardManager : MonoBehaviour
 	private GameObject[,] _candies;
 
 	public bool isShifting { get; set; }
-
+	private Candy _selectedCandy;
 
 	private void Awake()
 	{
