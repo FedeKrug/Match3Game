@@ -17,10 +17,11 @@ public class CandyComponent : MonoBehaviour
 		{
 			StartCoroutine(DestroyCandies());
 		}
+		
 		if (_candyRef.isSelected) //TODO: Animations for candies being selected
 		{
 			anim.SetBool("Selected", true);
-			Debug.Log(gameObject.transform.parent.name+ " Selected");
+			//Debug.Log(gameObject.transform.parent.name+ " Selected");
 		}
 		else
 		{

@@ -50,11 +50,30 @@ public class Candy : MonoBehaviour
 			}
 			else
 			{
+				SwapCandies(_previousSelected);
 				_previousSelected.DeselectCandy();
 				//SelectCandy();
 			}
 		}
+
+		
 	}
 
+	public void SwapCandies(Candy newCandy)
+	{
 
+		if (GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>()  == newCandy.GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>()) return;
+
+		
+		var tempPos = newCandy.transform.position;
+		newCandy.transform.position = this.transform.position;
+		this.transform.position = tempPos;
+
+		Debug.Log("Swap Candies");
+
+		var tempId = newCandy.id;
+		newCandy.id = this.id;
+		this.id = tempId;
+
+	}
 }
