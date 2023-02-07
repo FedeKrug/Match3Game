@@ -9,10 +9,10 @@ public class Candy : MonoBehaviour
 	private static Candy _previousSelected = null;
 
 	public bool isSelected;
-	
+
 	public int id;
 
-	
+
 
 	private Vector2[] _adjacentDirections = new Vector2[] //cuatro direcciones
 	{
@@ -30,7 +30,7 @@ public class Candy : MonoBehaviour
 	private void DeselectCandy()
 	{
 		isSelected = false;
-		_previousSelected = null; 
+		_previousSelected = null;
 	}
 	private void OnMouseDown()
 	{
@@ -50,21 +50,29 @@ public class Candy : MonoBehaviour
 			}
 			else
 			{
-				SwapCandies(_previousSelected);
-				_previousSelected.DeselectCandy();
-				//SelectCandy();
+				if (CanSwipe())
+				{
+					SwapCandies(_previousSelected);
+					_previousSelected.DeselectCandy();
+
+				}
+				else
+				{
+					_previousSelected.DeselectCandy();
+					SelectCandy();
+				}
 			}
 		}
 
-		
+
 	}
 
 	public void SwapCandies(Candy newCandy)
 	{
 
-		if (GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>()  == newCandy.GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>()) return;
+		if (GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>() == newCandy.GetComponentInChildren<CandyComponent>().GetComponent<SpriteRenderer>()) return;
 
-		
+
 		var tempPos = newCandy.transform.position;
 		newCandy.transform.position = this.transform.position;
 		this.transform.position = tempPos;
@@ -76,4 +84,41 @@ public class Candy : MonoBehaviour
 		this.id = tempId;
 
 	}
+
+	private GameObject GetNeighbor(Vector2 direction)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+		if (hit.collider != null)
+		{
+			return hit.collider.gameObject;
+		}
+		return null;
+
+	}
+
+	private List<GameObject> GetAllNeighbors()
+	{
+		List<GameObject> neighbors = new List<GameObject>();
+
+		foreach (Vector2 direction in _adjacentDirections)
+		{
+			neighbors.Add(GetNeighbor(direction));
+		}
+
+		return neighbors;
+
+	}
+
+	private bool CanSwipe()
+	{
+		return GetAllNeighbors().Contains(_previousSelected.gameObject);
+	}
+
+	private List<GameObject> FindMatch(Vector2 direction)
+	{
+		List<GameObject> matchingCandies = new List<GameObject>();
+		RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+
+	}
+
 }

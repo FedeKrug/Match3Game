@@ -6,6 +6,8 @@ public class BoardManager : MonoBehaviour
 {
 
 	public static BoardManager instance;
+	public const int MinCantToMatch = 2; 
+	
 	public List<GameObject> prefabs = new List<GameObject>();
 	public GameObject currentCandy;
 	[SerializeField] private int _xSize, _ySize;
@@ -14,6 +16,8 @@ public class BoardManager : MonoBehaviour
 
 	public bool isShifting { get; set; }
 	private Candy _selectedCandy;
+
+
 
 	private void Awake()
 	{
@@ -68,4 +72,6 @@ public class BoardManager : MonoBehaviour
 			}
 		}
 	}
+
+	
 }
