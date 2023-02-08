@@ -53,7 +53,9 @@ public class Candy : MonoBehaviour
 				if (CanSwipe())
 				{
 					SwapCandies(_previousSelected);
+					//_previousSelected.FindAllMatches();
 					_previousSelected.DeselectCandy();
+					//FindAllMatches();
 
 				}
 				else
@@ -117,7 +119,61 @@ public class Candy : MonoBehaviour
 	private List<GameObject> FindMatch(Vector2 direction)
 	{
 		List<GameObject> matchingCandies = new List<GameObject>();
+
 		RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+		while (hit.collider != null && hit.collider.gameObject.GetComponent<Candy>().id == this.id)
+		{
+			matchingCandies.Add(hit.collider.gameObject);
+			hit = Physics2D.Raycast(hit.collider.transform.position, direction);
+				Debug.Log("Candy Find Match");
+
+		}
+		hit = Physics2D.Raycast(this.transform.position, -direction);
+		while (hit.collider != null && hit.collider.gameObject.GetComponent<Candy>().id == this.id)
+		{
+			matchingCandies.Add(hit.collider.gameObject);
+			hit = Physics2D.Raycast(hit.collider.transform.position, -direction);
+				Debug.Log("Candy Find Match");
+
+		}
+
+		return matchingCandies;
+
+	}
+
+	private bool ClearMatch(Vector2[] directions)
+	{
+		List<GameObject> matchingCandies = new List<GameObject>();
+
+		foreach (Vector2 direction in directions)
+		{
+			matchingCandies.AddRange(FindMatch(direction));
+		}
+		if (matchingCandies.Count >= BoardManager.MinCantToMatch)
+		{
+
+			foreach (GameObject candy in matchingCandies)
+			{
+				var CO_candy = candy.GetComponentInChildren<CandyComponent>();
+				StartCoroutine(CO_candy.DestroyCandies());
+				Debug.Log("Candy destroyed");
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void FindAllMatches()
+	{
+		if (!GetComponentInChildren<CandyComponent>().gameObject.activeSelf) return;
+
+		bool hMatch = ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
+
+		bool vMatch = ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });
+		Debug.Log("Candy Match");
 
 	}
 

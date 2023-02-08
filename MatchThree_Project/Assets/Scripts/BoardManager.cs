@@ -6,8 +6,8 @@ public class BoardManager : MonoBehaviour
 {
 
 	public static BoardManager instance;
-	public const int MinCantToMatch = 2; 
-	
+	public const int MinCantToMatch = 2;
+
 	public List<GameObject> prefabs = new List<GameObject>();
 	public GameObject currentCandy;
 	[SerializeField] private int _xSize, _ySize;
@@ -37,7 +37,7 @@ public class BoardManager : MonoBehaviour
 		CreateInitialBoard(offset);
 	}
 
-	
+
 
 	private void CreateInitialBoard(Vector2 offset)
 	{
@@ -62,9 +62,9 @@ public class BoardManager : MonoBehaviour
 
 				}
 				while ((x > 0 && idX == _candies[x - 1, y].GetComponent<Candy>().id) || (y > 0 && idX == _candies[x, y - 1].GetComponent<Candy>().id)); //ejecuta la asignacion de un valor aleatorio tomando en cuenta los candy de la izquierda y abajo respectivamente
-				
 
-					var candyPrefab = prefabs[idX];
+
+				var candyPrefab = prefabs[idX];
 				Instantiate(candyPrefab, newCandy.GetComponent<Candy>().transform.position, currentCandy.transform.rotation, newCandy.transform);
 				newCandy.GetComponent<Candy>().id = idX;
 
@@ -73,5 +73,5 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-	
+
 }

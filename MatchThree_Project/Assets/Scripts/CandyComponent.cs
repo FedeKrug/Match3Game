@@ -29,7 +29,7 @@ public class CandyComponent : MonoBehaviour
 		}
 		
 	}
-	private IEnumerator DestroyCandies()
+	public IEnumerator DestroyCandies()
 	{
 		anim.SetTrigger("Explode");
 		Debug.Log("Explosion Animation activated");
